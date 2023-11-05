@@ -24,6 +24,9 @@ class ParakeetUserControllerTest : TestBaseWithDB(
     @Autowired
     lateinit var repository: ParakeetUserRepository
 
+    @Autowired
+    lateinit var userService: ParakeetUserService
+
 
     val user1 = ParakeetUser("abc", "123")
     val user2 = ParakeetUser("xyz", "123")
@@ -74,7 +77,7 @@ class ParakeetUserControllerTest : TestBaseWithDB(
         assert(!user2FromDB.following.contains(user1FromDB))
         assert(!user1FromDB.followers.contains(user2FromDB))
 
-        repository.delete(user1FromDB)
-        repository.delete(user2FromDB)
+        userService.deleteUser(user1FromDB)
+        userService.deleteUser(user2FromDB)
     }
 }
