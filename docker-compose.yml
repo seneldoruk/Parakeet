@@ -1,5 +1,17 @@
 version: '3.8'
 services:
+  api:
+    image: eclipse-temurin:17-jdk-focal
+    entrypoint: [ 'sh', 'hotreload.sh' ]
+    volumes:
+      - ./:/app
+    working_dir: /app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+    ports:
+      - "8080:8080"
+      - "35729:35729"
+      - "5005:5005"
   db:
     image: postgres:14.1-alpine
     restart: always
