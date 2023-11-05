@@ -10,7 +10,7 @@ class PostController(val postService: PostService) {
     @PostMapping()
     fun createPost(createPostDTO: CreatePostDTO) {
         val currentuser = ParakeetUser("asd", "afasf")
-        postService.createPost(createPostDTO, currentuser);
+        postService.createPost(createPostDTO, currentuser)
     }
 
 

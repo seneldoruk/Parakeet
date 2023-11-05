@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class PostService(val postRepository: PostRepository, val userRepository: ParakeetUserRepository) {
     fun createPost(createPostDTO: CreatePostDTO, currentUser: ParakeetUser): Post {
-        val parent = createPostDTO.parentId?.let { postRepository.findById(it).orElse(null) };
+        val parent = createPostDTO.parentId?.let { postRepository.findById(it).orElse(null) }
         return postRepository.save(Post(user = currentUser, text = createPostDTO.text, parent = parent)).get()
     }
 

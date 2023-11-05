@@ -14,6 +14,6 @@ class ParakeetUserController(private val userService: ParakeetUserService) {
 
     @PostMapping("follow/{username}")
     fun followUser(@PathVariable username: String, principal: Principal) {
-        userService.followUser(principal.name, username);
+        userService.followUser(principal.name, username)
     }
 }

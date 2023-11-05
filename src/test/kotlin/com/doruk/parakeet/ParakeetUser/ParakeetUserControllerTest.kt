@@ -2,18 +2,23 @@ package com.doruk.parakeet.ParakeetUser
 
 
 import com.doruk.parakeet.Security.AuthController
-import com.doruk.parakeet.TestClasses.TestWithDB
+import com.doruk.parakeet.TestClasses.TestBase
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.junit.jupiter.Container
+import java.util.function.Supplier
 
-class ParakeetUserControllerTest : TestWithDB(
+class ParakeetUserControllerTest : TestBase(
 ) {
     @Autowired
     lateinit var controller: ParakeetUserController
@@ -22,14 +27,25 @@ class ParakeetUserControllerTest : TestWithDB(
     lateinit var authController: AuthController
 
     @Autowired
-    lateinit var service: ParakeetUserService
-
-    @Autowired
     lateinit var repository: ParakeetUserRepository
+
+    companion object {
+        @Container
+        val postgres = PostgreSQLContainer("postgres:14.1-alpine")
+
+        @JvmStatic
+        @DynamicPropertySource
+        fun configureTestContainerProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.datasource.url", postgres::getJdbcUrl)
+            registry.add("spring.datasource.password", postgres::getPassword)
+            registry.add("spring.datasource.username", postgres::getUsername)
+            registry.add("spring.jpa.hibernate.ddl-auto", Supplier { -> "create" })
+        }
+    }
+
 
     val user1 = ParakeetUser("abc", "123")
     val user2 = ParakeetUser("xyz", "123")
-
 
     @Test
     fun create_and_get_user() {
@@ -41,7 +57,7 @@ class ParakeetUserControllerTest : TestWithDB(
                 .content(postBody)
         )
             .andExpect(status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.token").exists());
+            .andExpect(MockMvcResultMatchers.jsonPath("$.token").exists())
 
 
         //saved correct user

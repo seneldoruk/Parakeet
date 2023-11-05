@@ -23,16 +23,16 @@ class ParakeetUserService(
     fun followUser(currentUsername: String, userToFollowUsername: String) {
         userRepository.findById(userToFollowUsername).getOrNull()?.let { userToFollow ->
             userRepository.findById(currentUsername).getOrNull()?.let { currentUser ->
-                currentUser.following.add(userToFollow);
-                userToFollow.followers.add(currentUser);
+                currentUser.following.add(userToFollow)
+                userToFollow.followers.add(currentUser)
             }
         }
     }
 
     @Transactional
     fun deleteUser(user: ParakeetUser) {
-        user.following = mutableSetOf();
-        user.followers = mutableSetOf();
+        user.following = mutableSetOf()
+        user.followers = mutableSetOf()
         postRepository.deleteAllByUser(user)
     }
 }
