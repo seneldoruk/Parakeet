@@ -1,13 +1,19 @@
 version: '3.8'
 services:
   api:
-    image: eclipse-temurin:17-jdk-focal
-    entrypoint: [ 'sh', 'hotreload.sh' ]
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: sh hotreload.sh
     volumes:
       - ./:/app
+      - ./.m2:/root/.m2
     working_dir: /app
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - JWTTOKEN=1FA89D4D8E7332D55EB986F4A5753111
     ports:
       - "8080:8080"
       - "35729:35729"
