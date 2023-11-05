@@ -1,6 +1,6 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
-import com.doruk.parakeet.Post.PostRepository
+import com.doruk.parakeet.post.PostRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull

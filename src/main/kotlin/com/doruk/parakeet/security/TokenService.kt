@@ -1,7 +1,7 @@
-package com.doruk.parakeet.Security
+package com.doruk.parakeet.security
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
-import com.doruk.parakeet.ParakeetUser.ParakeetUserService
+import com.doruk.parakeet.parakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUserService
 import org.springframework.security.oauth2.jwt.*
 import org.springframework.stereotype.Service
 import java.time.Instant

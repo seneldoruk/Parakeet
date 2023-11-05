@@ -1,8 +1,8 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
 
-import com.doruk.parakeet.Security.AuthController
-import com.doruk.parakeet.TestClasses.TestBase
+import com.doruk.parakeet.security.AuthController
+import com.doruk.parakeet.testClasses.TestBase
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
-import java.util.function.Supplier
 
 class ParakeetUserControllerTest : TestBase(
 ) {
@@ -39,7 +38,7 @@ class ParakeetUserControllerTest : TestBase(
             registry.add("spring.datasource.url", postgres::getJdbcUrl)
             registry.add("spring.datasource.password", postgres::getPassword)
             registry.add("spring.datasource.username", postgres::getUsername)
-            registry.add("spring.jpa.hibernate.ddl-auto", Supplier { -> "create" })
+            registry.add("spring.jpa.hibernate.ddl-auto") { "create" }
         }
     }
 

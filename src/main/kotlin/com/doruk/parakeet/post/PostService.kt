@@ -1,7 +1,7 @@
-package com.doruk.parakeet.Post
+package com.doruk.parakeet.post
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
-import com.doruk.parakeet.ParakeetUser.ParakeetUserRepository
+import com.doruk.parakeet.parakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUserRepository
 import jakarta.transaction.Transactional
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service

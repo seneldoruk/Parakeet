@@ -1,6 +1,6 @@
-package com.doruk.parakeet.TestClasses
+package com.doruk.parakeet.testClasses
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUser
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc

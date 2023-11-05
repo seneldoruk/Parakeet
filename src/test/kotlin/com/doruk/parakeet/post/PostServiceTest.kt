@@ -1,8 +1,8 @@
-package com.doruk.parakeet.Post
+package com.doruk.parakeet.post
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
-import com.doruk.parakeet.ParakeetUser.ParakeetUserService
-import com.doruk.parakeet.TestClasses.TestBase
+import com.doruk.parakeet.parakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUserService
+import com.doruk.parakeet.testClasses.TestBase
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -12,9 +12,8 @@ import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
-import java.util.function.Supplier
 
-class PostServiceTest() : TestBase() {
+class PostServiceTest : TestBase() {
 
     companion object {
         @Container
@@ -26,7 +25,7 @@ class PostServiceTest() : TestBase() {
             registry.add("spring.datasource.url", postgres::getJdbcUrl)
             registry.add("spring.datasource.password", postgres::getPassword)
             registry.add("spring.datasource.username", postgres::getUsername)
-            registry.add("spring.jpa.hibernate.ddl-auto", Supplier { -> "create" })
+            registry.add("spring.jpa.hibernate.ddl-auto") { "create" }
         }
     }
 

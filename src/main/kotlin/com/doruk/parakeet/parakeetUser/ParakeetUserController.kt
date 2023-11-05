@@ -1,9 +1,9 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
 import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
-@RestController()
+@RestController
 @RequestMapping("users")
 class ParakeetUserController(private val userService: ParakeetUserService) {
     @GetMapping("{username}")

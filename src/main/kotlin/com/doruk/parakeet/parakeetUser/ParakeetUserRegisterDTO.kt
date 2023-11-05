@@ -1,3 +1,3 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
 data class ParakeetUserRegisterDTO(val username: String, val password: String)

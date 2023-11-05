@@ -1,8 +1,8 @@
-package com.doruk.parakeet.Security
+package com.doruk.parakeet.security
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
-import com.doruk.parakeet.ParakeetUser.ParakeetUserRegisterDTO
-import com.doruk.parakeet.ParakeetUser.ParakeetUserService
+import com.doruk.parakeet.parakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUserRegisterDTO
+import com.doruk.parakeet.parakeetUser.ParakeetUserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,4 +1,4 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository

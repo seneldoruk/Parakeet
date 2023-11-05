@@ -1,6 +1,6 @@
-package com.doruk.parakeet.Post
+package com.doruk.parakeet.post
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUser
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotEmpty
 import java.time.LocalDateTime

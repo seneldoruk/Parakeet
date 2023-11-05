@@ -1,4 +1,4 @@
-package com.doruk.parakeet.Security
+package com.doruk.parakeet.security
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret
 import com.nimbusds.jose.proc.SecurityContext

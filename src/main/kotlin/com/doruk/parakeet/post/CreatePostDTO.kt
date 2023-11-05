@@ -1,4 +1,4 @@
-package com.doruk.parakeet.Post
+package com.doruk.parakeet.post
 
 data class CreatePostDTO(
     val text: String,

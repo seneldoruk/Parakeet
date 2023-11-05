@@ -1,4 +1,4 @@
-package com.doruk.parakeet.Security
+package com.doruk.parakeet.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

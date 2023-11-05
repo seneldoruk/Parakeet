@@ -1,13 +1,13 @@
-package com.doruk.parakeet.Post
+package com.doruk.parakeet.post
 
-import com.doruk.parakeet.ParakeetUser.ParakeetUser
+import com.doruk.parakeet.parakeetUser.ParakeetUser
 import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
 @RestController
 @RequestMapping("posts")
 class PostController(val postService: PostService) {
-    @PostMapping()
+    @PostMapping
     fun createPost(createPostDTO: CreatePostDTO) {
         val currentuser = ParakeetUser("asd", "afasf")
         postService.createPost(createPostDTO, currentuser)
@@ -19,7 +19,7 @@ class PostController(val postService: PostService) {
         return postService.getPostsOfUser(username, page)
     }
 
-    @GetMapping()
+    @GetMapping
     fun getPostsForCurrentUser(principal: Principal): List<Post> {
         return postService.getPostsOfFollowedUsers(principal.name)
     }

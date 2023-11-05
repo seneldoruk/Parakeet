@@ -1,6 +1,6 @@
-package com.doruk.parakeet.ParakeetUser
+package com.doruk.parakeet.parakeetUser
 
-import com.doruk.parakeet.Post.Post
+import com.doruk.parakeet.post.Post
 import jakarta.persistence.*
 
 
@@ -9,7 +9,7 @@ data class ParakeetUser(
     @Id val username: String,
     val password: String,
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
         name = "user_followers",
         joinColumns = [JoinColumn(name = "followed_id")],
