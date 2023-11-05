@@ -2,22 +2,18 @@ package com.doruk.parakeet.parakeetUser
 
 
 import com.doruk.parakeet.security.AuthController
-import com.doruk.parakeet.testClasses.TestBase
+import com.doruk.parakeet.testClasses.TestBaseWithDB
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
-import org.springframework.test.context.DynamicPropertyRegistry
-import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.junit.jupiter.Container
 
-class ParakeetUserControllerTest : TestBase(
+class ParakeetUserControllerTest : TestBaseWithDB(
 ) {
     @Autowired
     lateinit var controller: ParakeetUserController
@@ -27,20 +23,6 @@ class ParakeetUserControllerTest : TestBase(
 
     @Autowired
     lateinit var repository: ParakeetUserRepository
-
-    companion object {
-        @Container
-        val postgres = PostgreSQLContainer("postgres:14.1-alpine")
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun configureTestContainerProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", postgres::getJdbcUrl)
-            registry.add("spring.datasource.password", postgres::getPassword)
-            registry.add("spring.datasource.username", postgres::getUsername)
-            registry.add("spring.jpa.hibernate.ddl-auto") { "create" }
-        }
-    }
 
 
     val user1 = ParakeetUser("abc", "123")

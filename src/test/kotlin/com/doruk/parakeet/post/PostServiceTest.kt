@@ -2,33 +2,14 @@ package com.doruk.parakeet.post
 
 import com.doruk.parakeet.parakeetUser.ParakeetUser
 import com.doruk.parakeet.parakeetUser.ParakeetUserService
-import com.doruk.parakeet.testClasses.TestBase
+import com.doruk.parakeet.testClasses.TestBaseWithDB
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.DynamicPropertyRegistry
-import org.springframework.test.context.DynamicPropertySource
-import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.junit.jupiter.Container
 
-class PostServiceTest : TestBase() {
-
-    companion object {
-        @Container
-        val postgres = PostgreSQLContainer("postgres:14.1-alpine")
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun configureTestContainerProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", postgres::getJdbcUrl)
-            registry.add("spring.datasource.password", postgres::getPassword)
-            registry.add("spring.datasource.username", postgres::getUsername)
-            registry.add("spring.jpa.hibernate.ddl-auto") { "create" }
-        }
-    }
-
+class PostServiceTest : TestBaseWithDB() {
 
     @Autowired
     lateinit var postService: PostService
