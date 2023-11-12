@@ -1,5 +1,5 @@
 import stylesheet from "~/tailwind.css";
-import type { LinksFunction } from "@remix-run/node";
+import { redirect, type LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -9,6 +9,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import Navbar from "./components/navbar";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -19,6 +20,7 @@ export const meta: MetaFunction = () => {
     { title: "Parakeet" },
   ];
 };
+
 
 export default function App() {
   return (
