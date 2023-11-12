@@ -1,5 +1,7 @@
 import stylesheet from "~/tailwind.css";
 import { redirect, type LinksFunction } from "@remix-run/node";
+import { Provider } from "react-redux";
+
 import {
   Links,
   LiveReload,
@@ -10,6 +12,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import Navbar from "./components/navbar";
+import { store } from "./state/store";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -32,7 +35,9 @@ export default function App() {
         <Links />
       </head>
       <body className="w-max-screen overflow-x-hidden ">
-        <Outlet />
+        <Provider store={store}>
+          <Outlet />
+        </Provider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

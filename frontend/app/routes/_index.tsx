@@ -12,7 +12,7 @@ export const loader = () => {
 }
 export default function Index() {
   return (
-    <div className="w-screen px-[10%]">
+    <div className="w-screen px-[10%] ">
       <Navbar />
       <Posts />
     </div>
