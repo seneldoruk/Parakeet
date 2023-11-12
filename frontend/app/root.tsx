@@ -1,6 +1,8 @@
 import stylesheet from "~/tailwind.css";
 import { redirect, type LinksFunction } from "@remix-run/node";
 import { Provider } from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 import {
   Links,
@@ -37,6 +39,7 @@ export default function App() {
       <body className="w-max-screen overflow-x-hidden ">
         <Provider store={store}>
           <Outlet />
+          <Toaster />
         </Provider>
         <ScrollRestoration />
         <Scripts />
