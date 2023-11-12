@@ -3,6 +3,7 @@ import { MetaFunction } from "@remix-run/react";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { useLoginQuery } from "~/api/authApi";
 
 export const meta: MetaFunction = () => {
     return [
@@ -30,8 +31,12 @@ const Login = () => {
         resolver: zodResolver(formSchema)
     });
 
-    const onSubmit: SubmitHandler<FormSchema> = ({ username, password, loginOrRegister }) => {
+    const onSubmit: SubmitHandler<FormSchema> = async ({ username, password, loginOrRegister }) => {
         const isLoginForm = loginOrRegister == "login"
+
+        if (isLoginForm) {
+            const { data, error, isLoading } = useLoginQuery({ username, password })
+        }
     };
     return (
         <div className="flex w-full justify-center items-center min-h-screen">

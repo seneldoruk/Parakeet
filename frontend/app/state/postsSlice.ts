@@ -3,7 +3,7 @@ import * as toolkitRaw from '@reduxjs/toolkit';
 const { createSlice } = ((toolkitRaw as any).default ?? toolkitRaw) as typeof toolkitRaw;
 import { Props as Post } from "~/components/post/post";
 
-const mockPosts: Post[] = [
+export const mockPosts: Post[] = [
     {
         user: "alice",
         text: " Suspendisse et malesuada odio, eu rhoncus odio. Donec commodo tellus nec risus tempus feugiat. Sed eu libero et urna fermentum faucibus. Nulla facilisi. Nulla facilisi. Fusce id est a quam vestibulum euismod in id risus."
@@ -43,12 +43,22 @@ const initialState: PostSlice = {
     posts: mockPosts,
     viewing: "all"
 }
+interface addPostsAction {
+    posts: Post[],
+    addToStart: boolean
+}
 const postsSlice = createSlice({
     name: "postsSlice",
     initialState,
     reducers: {
-        addPosts: function (state, action: PayloadAction<Post[]>) {
-            state.posts.push(...action.payload)
+        addPosts: function (state, action: PayloadAction<addPostsAction>) {
+            if (action.payload.addToStart) {
+                state.posts.unshift(...action.payload.posts)
+            }
+            else {
+                state.posts.push(...action.payload.posts)
+
+            }
         },
         setPosts: function (state, action: PayloadAction<PostSlice>) {
             state.posts = action.payload.posts

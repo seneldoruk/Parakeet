@@ -1,9 +1,14 @@
 import { useRef } from "react"
+import { useAppDispatch, useAppSelector } from "~/state/hooks"
+import { addPosts } from "~/state/postsSlice"
 
 export default function SendPost() {
     const postText = useRef<HTMLTextAreaElement>(null)
+    const dispatch = useAppDispatch()
+    const username = useAppSelector(state => state.user.username)
     function sendPost() {
-        console.log(postText.current)
+        console.log(postText.current?.value)
+        dispatch(addPosts({ posts: [{ text: postText.current?.value!, user: username! }], addToStart: true }))
     }
     return (
         <>
